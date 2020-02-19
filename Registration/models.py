@@ -47,4 +47,13 @@ class Student(models.Model):
     # Token = models.AutoField(auto_created=True, unique=True, default=1001, serialize=True)
 
     def __str__(self):
-        return self.Name
+        return self.ID
+
+class Contestant(models.Model):
+    Token = models.AutoField(auto_created=True, primary_key=True, unique=True, serialize=True)
+    ID = models.ForeignKey(Student, on_delete=models.CASCADE)
+    # Name = models.ForeignKey(Student, on_delete=models.CASCADE)
+    TShirt = models.CharField(max_length=10, choices=Student.tshirt, default='mid')
+
+    def __str__(self):
+        return str(self.Token)

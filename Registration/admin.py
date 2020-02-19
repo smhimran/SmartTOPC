@@ -2,7 +2,12 @@ from django.contrib import admin
 from Registration.models import *
 # Register your models here.
 
-class Admin(admin.ModelAdmin):
+class studentAdmin(admin.ModelAdmin):
     list_display = ('ID', 'Name', 'Department', 'Campus', 'Semester', 'Shift', 'Section', 'TShirt', 'Status')
 
-admin.site.register(Student, Admin)
+class contestantAdmin(admin.ModelAdmin):
+    list_display = ('Token', 'ID',  'TShirt')
+
+
+admin.site.register(Student, studentAdmin)
+admin.site.register(Contestant, contestantAdmin)
