@@ -1,12 +1,47 @@
-{# yonetim/templates/list.html #}
-{% load render_table from django_tables2 %}
-{% load static %}
-<!doctype html>
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static'Registration/static/css/screen.css' %}" />
-    </head>
-    <body>
-        {% render_table istekler %}
-    </body>
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Students</title>
+    <link rel="stylesheet" href="{% static "css/screen.css" %}"/>
+  </head>
+  <body>
+    <h1>Students List</h1>
+    <div class="overflow-x:scroll;">
+      {% if table %}
+        <table>
+          <thead>
+            <th>Student ID</th>
+            <th> Student Name</th>
+            <th>Department</th>
+            <th>Campus</th>
+            <th>Semester</th>
+            <th>Shift</th>
+            <th>Section</th>
+            <th>T-Shirt Size</th>
+            <th>Registration Status</th>
+          </thead>
+          {% for st in table %}
+            <tr>
+              <td>{{ st.ID }}</td>
+              <td>{{ st.Name }}</td>
+              <td>{{ st.Department }}</td>
+              <td>{{ st.Campus }}</td>
+              <td>{{ st.Semester }}</td>
+              <td>{{ st.Shift }}</td>
+              <td>{{ st.Section }}</td>
+              <td>{{ st.TShirt }}</td>
+              <td>{{ st.Status }}</td>
+            </tr>
+          {% endfor %}
+
+        </table>
+        {% else %}
+          <p>Nothing Found :( </p>
+        {% endif %}
+
+    </div>
+
+  </body>
 </html>

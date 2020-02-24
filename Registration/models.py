@@ -3,36 +3,36 @@ from django.db import models
 # Create your models here.
 class Student(models.Model):
     dept = (
-        ('Cse', "CSE"),
-        ('Soft', 'SWE'),
-        ('cis', 'CIS'),
-        ('other', 'Other'),
+        ('CSE', "CSE"),
+        ('SWE', 'SWE'),
+        ('CIS', 'CIS'),
+        ('Other', 'Other'),
     )
     camp = (
-        ('Main', 'MC'),
-        ('Uttara', 'UC'),
+        ('MC', 'MC'),
+        ('UC', 'UC'),
     )
     sem = (
-        ('first', '1st'),
-        ('second', '2nd'),
+        ('1st', '1st'),
+        ('2nd', '2nd'),
     )
     shft = (
-        ('day', 'Day'),
-        ('eve', 'Evening'),
+        ('Day', 'Day'),
+        ('Evening', 'Evening'),
     )
     sec = (
-        ('a', 'A'),
-        ('b', 'B'),
-        ('c', 'C'),
-        ('d', 'D'),
-        ('e', 'E'),
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C'),
+        ('D', 'D'),
+        ('E', 'E'),
     )
     tshirt = (
-        ('mid', 'M'),
-        ('large', 'L'),
-        ('xlarge', 'XL'),
-        ('xxlarge', 'XXL'),
-        ('xxxlarge', 'XXXL'),
+        ('M', 'M'),
+        ('L', 'L'),
+        ('XL', 'XL'),
+        ('XXL', 'XXL'),
+        ('XXXL', 'XXXL'),
     )
 
     ID = models.CharField(max_length=20, unique=True, primary_key=True)
