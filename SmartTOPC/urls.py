@@ -21,4 +21,5 @@ from Registration import views
 urlpatterns = [
     path('', views.index, name='list'),
     path('admin/', admin.site.urls),
+    path('form/', views.form_view, name='form')
 ]

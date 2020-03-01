@@ -4,14 +4,19 @@
   <head>
     <meta charset="utf-8">
     <title>Students</title>
-    <link rel="stylesheet" href="{% static "css/screen.css" %}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
   </head>
   <body>
-    <h1>Students List</h1>
-    <div class="overflow-x:scroll;">
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Students List</h1>
+      </div>
+    </div>
+
+    <div class="table-responsive">
       {% if table %}
-        <table>
-          <thead>
+        <table class = "table table-stripped table-dark table-borderd table-hover">
+          <thead class= "thead-light">
             <th>Student ID</th>
             <th> Student Name</th>
             <th>Department</th>
