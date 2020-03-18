@@ -3,17 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Input Form</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
   </head>
   <body>
 
     <div class="container">
       <form method="post">
-        <div class="form-group">
           {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-
+          {% csrf_token %}
+          <input type="submit" class="btn btn-primary" value='submit'>
       </form>
     </div>
 

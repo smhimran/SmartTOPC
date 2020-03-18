@@ -2,5 +2,6 @@ from django.conf.urls import url
 from Registration import views
 
 urlpatterns = [
-    url('', views.index, name='list'),
+    url('', views.home, name='home'),
+    url('students/', views.list, name='list'),
 ]

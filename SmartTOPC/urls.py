@@ -19,7 +19,9 @@ from django.conf.urls import include
 from Registration import views
 
 urlpatterns = [
-    path('', views.index, name='list'),
+    path('', views.home, name='home'),
+    path('students/', views.list, name='list'),
     path('admin/', admin.site.urls),
-    path('form/', views.form_view, name='form')
+    path('form/', views.user_entry, name='form'),
+    path('logout/', views.user_logout, name='logout'),
 ]
