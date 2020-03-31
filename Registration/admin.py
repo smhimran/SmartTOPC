@@ -11,3 +11,4 @@ class contestantAdmin(admin.ModelAdmin):
 
 admin.site.register(Student, studentAdmin)
 admin.site.register(Contestant, contestantAdmin)
+admin.site.register(UserProfileInfo)
