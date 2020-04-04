@@ -20,9 +20,9 @@ from Registration import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('Registration/', include('Registration.urls')),
+    path('Registration/', include('Registration.urls', namespace='Registration')),
     # path('students/', views.list, name='list'),
     path('admin/', admin.site.urls, name='admin'),
     # path('form/', views.user_entry, name='form'),
-    # path('logout/', views.user_logout, name='logout'),
+    path('logout/', views.user_logout, name='logout'),
 ]
