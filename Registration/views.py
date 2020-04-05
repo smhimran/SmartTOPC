@@ -4,9 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
-from Registration.models import Student, User, UserProfileInfo
+from Registration.models import Student
 from django.contrib import messages
-from Registration.forms import Form, UserForm, UserProfileInfoForm
+from Registration.forms import Form, UserForm
 
 # Create your views here.
 def home(request):
@@ -19,20 +19,12 @@ def register(request):
 
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileInfoForm(data=request.POST)
 
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
+            user.is_staff = True
             user.save()
-
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-            if 'profile_pic' in request.FILES:
-                profile.profile_pic = request.FILES['profile_pic']
-
-            profile.save()
 
             registered = True
 
@@ -41,11 +33,9 @@ def register(request):
 
     else:
         user_form = UserForm()
-        profile_form = UserProfileInfoForm()
 
     dict = {
         'user_form':user_form,
-        'profile_form':profile_form,
         'registered':registered,
     }
 
