@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.forms import ModelForm
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -11,7 +12,24 @@ from Registration.forms import Form, UserForm
 # Create your views here.
 def home(request):
     # dict = {'home': home}
-    return render(request, 'Registration/home.html')
+    model = Student
+    result = None
+    # def get_queryset(self):
+    #    # result = super(home, self).get_queryset()
+
+    #
+    #    return result
+
+    if request.method == "POST":
+        query = request.POST.get('search')
+        if query:
+           result = Student.objects.filter(ID=query)
+        else:
+            result = None
+        # result = super(self, home).get_queryset()
+    # result = Student.objects.all()
+    dict = {'result':result}
+    return render(request, 'Registration/home.html', context=dict)
 
 def register(request):
 
@@ -79,7 +97,7 @@ def user_login(request):
             return HttpResponse('Invalid Username or Password!')
 
     else:
-        print('Invalid user tried to login')
+        # print('Invalid user tried to login')
         return render(request, 'Registration/login.html')
 
 @login_required

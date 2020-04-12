@@ -7,7 +7,7 @@
         <div class="jumbotron"  height=480px width=640px>
           <h2>Welcome</h2>
         </div>
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -46,7 +46,55 @@
           <span class="glyphicon glyphicon-chevron-right"></span>
           <span class="sr-only">Next</span>
         </a>
+      </div> -->
+
+      <div class='input-group mb-3' align='center'>
+        <form class="search" method="post">
+          {% csrf_token %}
+          <input type="search" name="search" class="form-control">
+          <div class="input-group-append">
+              <button class="btn btn-success" type="submit">Search</button>
+          </div>
+
+        </form>
+        {% if result %}
+          <table class = "table table-dark table-striped table-hover">
+            <thead class= "thead-dark">
+              <th scope="col">Student ID</th>
+              <th scope="col"> Student Name</th>
+              <th scope="col">Department</th>
+              <th scope="col">Campus</th>
+              <th scope="col">Semester</th>
+              <th scope="col">Shift</th>
+              <th scope="col">Section</th>
+              <th scope="col">T-Shirt Size</th>
+              <th scope="col">Registration Status</th>
+            </thead>
+          {% for st in result %}
+            <tr>
+              <td>{{ st.ID }}</td>
+              <td>{{ st.Name|title }}</td>
+              <td>{{ st.Department }}</td>
+              <td>{{ st.Campus }}</td>
+              <td>{{ st.Semester }}</td>
+              <td>{{ st.Shift }}</td>
+              <td>{{ st.Section }}</td>
+              <td>{{ st.TShirt }}</td>
+              {% if st.Status == True %}
+                <td>Registered</td>
+              {% else %}
+                <td>Not Registered</td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        {% elif request.method == "POST" %}
+          <script type="text/javascript">
+            alert('No Such Student Found');
+          </script>
+        {% endif %}
       </div>
+
+
     </div>
   </div>
   {% endblock %}
