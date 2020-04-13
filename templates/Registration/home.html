@@ -58,16 +58,18 @@
 
         </form>
         {% if result %}
-          <table class = "table table-dark table-striped table-hover">
+          <table class = "table table-striped table-hover">
             <thead class= "thead-dark">
               <th scope="col">Student ID</th>
               <th scope="col"> Student Name</th>
               <th scope="col">Department</th>
-              <th scope="col">Campus</th>
-              <th scope="col">Semester</th>
-              <th scope="col">Shift</th>
-              <th scope="col">Section</th>
-              <th scope="col">T-Shirt Size</th>
+                {% if user.is_authenticated == True %}
+                <th scope="col">Campus</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Shift</th>
+                <th scope="col">Section</th>
+                <th scope="col">T-Shirt Size</th>
+              {% endif %}
               <th scope="col">Registration Status</th>
             </thead>
           {% for st in result %}
@@ -75,11 +77,13 @@
               <td>{{ st.ID }}</td>
               <td>{{ st.Name|title }}</td>
               <td>{{ st.Department }}</td>
-              <td>{{ st.Campus }}</td>
-              <td>{{ st.Semester }}</td>
-              <td>{{ st.Shift }}</td>
-              <td>{{ st.Section }}</td>
-              <td>{{ st.TShirt }}</td>
+              {% if user.is_authenticated == True %}
+                <td>{{ st.Campus }}</td>
+                <td>{{ st.Semester }}</td>
+                <td>{{ st.Shift }}</td>
+                <td>{{ st.Section }}</td>
+                <td>{{ st.TShirt }}</td>
+              {% endif %}
               {% if st.Status == True %}
                 <td>Registered</td>
               {% else %}

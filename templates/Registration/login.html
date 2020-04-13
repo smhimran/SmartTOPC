@@ -13,6 +13,22 @@
     <br>
     <input type="submit" name="" value="Login">
   </form>
+  {% for message in messages %}
+          <div class="alert alert-danger">
+                    {{message}}
+          </div>
+          <script type="text/javascript">
+            $(document).ready(function() {
+
+              setTimeout(function() {
+                  $(".alert").alert('close');
+              }, 1000);
+            })
+          </script>
+
+
+  {% endfor %}
+
 </div>
 
 {% endblock %}

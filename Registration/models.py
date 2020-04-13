@@ -45,7 +45,7 @@ class Student(models.Model):
     Semester = models.CharField(max_length=10, choices=sem, default='first')
     Shift = models.CharField(max_length=10, choices=shft, default='day')
     Section = models.CharField(max_length=10, choices=sec)
-    TShirt = models.CharField(max_length=10, choices=tshirt, default='mid')
+    TShirt = models.CharField(max_length=10, choices=tshirt, default='M')
     Status = models.BooleanField(default=False)
     # Token = models.AutoField(auto_created=True, unique=True, default=1001, serialize=True)
 

@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from Registration.models import Student
+from django.db.models import Q
 from django.contrib import messages
 from Registration.forms import Form, UserForm
 
@@ -23,7 +24,7 @@ def home(request):
     if request.method == "POST":
         query = request.POST.get('search')
         if query:
-           result = Student.objects.filter(ID=query)
+           result = Student.objects.filter(Q(ID__contains=query) | Q(Name__contains=query))
         else:
             result = None
         # result = super(self, home).get_queryset()
@@ -94,7 +95,8 @@ def user_login(request):
             return HttpResponseRedirect(reverse('home'))
 
         else:
-            return HttpResponse('Invalid Username or Password!')
+            messages.error(request, 'Invalid Username or Password!')
+            return redirect('Registration:user_login')
 
     else:
         # print('Invalid user tried to login')
