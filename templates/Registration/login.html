@@ -1,33 +1,36 @@
 {% extends "Registration/base.html" %}
 {% block body_block %}
 
-<div class="jumbotron">
-  <h1>Please Login</h1>
-  <form action="{% url 'Registration:user_login' %}" method="post">
-    {% csrf_token %}
-    <label for="username">User:</label>
-    <input type="text" name="username" placeholder="Enter Username">
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" name="password">
-    <br>
-    <input type="submit" name="" value="Login">
-  </form>
-  {% for message in messages %}
-          <div class="alert alert-danger">
-                    {{message}}
-          </div>
-          <script type="text/javascript">
-            $(document).ready(function() {
+<div class="container">
+    <div class="jumbotron">
+    <h1>Please Login</h1>
+    <form action="{% url 'user_login' %}" method="post">
+      {% csrf_token %}
+      <label for="username">Username:</label>
+      <input type="text" name="username" placeholder="Enter Username">
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" name="password">
+      <br>
+      <input type="submit" name="" value="Login">
+    </form>
+    {% for message in messages %}
+            <div class="alert alert-danger">
+                      {{message}}
+            </div>
+            <script type="text/javascript">
+              $(document).ready(function() {
 
-              setTimeout(function() {
-                  $(".alert").alert('close');
-              }, 1000);
-            })
-          </script>
+                setTimeout(function() {
+                    $(".alert").alert('close');
+                }, 1000);
+              })
+            </script>
 
 
-  {% endfor %}
+    {% endfor %}
+
+  </div>
 
 </div>
 

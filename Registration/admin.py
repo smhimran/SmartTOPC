@@ -3,10 +3,10 @@ from Registration.models import *
 # Register your models here.
 
 class studentAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'Name', 'Department', 'Campus', 'Semester', 'Shift', 'Section', 'TShirt', 'Status')
+    list_display = ('ID', 'Name', 'Department', 'Campus', 'Semester', 'Shift', 'Section', 'Status')
 
 class contestantAdmin(admin.ModelAdmin):
-    list_display = ('Token', 'ID',  'TShirt')
+    list_display = ('ID', 'Name', 'Department', 'Campus', 'Semester', 'Shift', 'Section', 'TShirt', 'Token')
 
 
 admin.site.register(Student, studentAdmin)

@@ -1,0 +1,48 @@
+{% extends "Registration/base.html" %}
+{% load static %}
+ {% block body_block %}
+
+   <div class="container">
+     <div class="jumbotron">
+       <h1> Registered Students List</h1>
+     </div>
+   </div>
+
+   <div class="container">
+     <div class="table-responsive">
+     {% if table %}
+       <table class = "table table-striped table-hover">
+         <thead class= "thead-dark">
+           <th scope="col">Token</th>
+           <th scope="col">Student ID</th>
+           <th scope="col"> Student Name</th>
+           <th scope="col">Department</th>
+           <th scope="col">Campus</th>
+           <th scope="col">Semester</th>
+           <th scope="col">Shift</th>
+           <th scope="col">Section</th>
+           <th scope="col">T-Shirt</th>
+           <!-- <th scope="col">Registration Status</th> -->
+         </thead>
+         {% for st in table %}
+           <tr>
+             <td>{{ st.Token }}</td>
+             <td>{{ st.ID }}</td>
+             <td>{{ st.Name|title }}</td>
+             <td>{{ st.Department }}</td>
+             <td>{{ st.Campus }}</td>
+             <td>{{ st.Semester }}</td>
+             <td>{{ st.Shift }}</td>
+             <td>{{ st.Section }}</td>
+             <td>{{ st.TShirt }}</td>
+           </tr>
+         {% endfor %}
+
+       </table>
+       {% else %}
+         <p>Nothing Found :( </p>
+       {% endif %}
+   </div>
+
+   </div>
+{% endblock %}

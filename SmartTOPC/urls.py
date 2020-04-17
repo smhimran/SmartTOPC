@@ -23,6 +23,6 @@ urlpatterns = [
     path('Registration/', include('Registration.urls', namespace='Registration')),
     # path('students/', views.list, name='list'),
     path('admin/', admin.site.urls, name='admin'),
-    # path('form/', views.user_entry, name='form'),
+    path('login/', views.user_login, name='user_login'),
     path('logout/', views.user_logout, name='logout'),
 ]

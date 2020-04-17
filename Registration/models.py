@@ -30,22 +30,14 @@ class Student(models.Model):
         ('D', 'D'),
         ('E', 'E'),
     )
-    tshirt = (
-        ('M', 'M'),
-        ('L', 'L'),
-        ('XL', 'XL'),
-        ('XXL', 'XXL'),
-        ('XXXL', 'XXXL'),
-    )
 
     ID = models.CharField(max_length=20, unique=True, primary_key=True)
     Name = models.CharField(max_length=50)
-    Department = models.CharField(max_length=10, choices=dept, default='Cse')
-    Campus = models.CharField(max_length=10, choices=camp, default='Main')
-    Semester = models.CharField(max_length=10, choices=sem, default='first')
-    Shift = models.CharField(max_length=10, choices=shft, default='day')
+    Department = models.CharField(max_length=10, choices=dept, default='CSE')
+    Campus = models.CharField(max_length=10, choices=camp, default='MC')
+    Semester = models.CharField(max_length=10, choices=sem, default='1st')
+    Shift = models.CharField(max_length=10, choices=shft, default='Day')
     Section = models.CharField(max_length=10, choices=sec)
-    TShirt = models.CharField(max_length=10, choices=tshirt, default='M')
     Status = models.BooleanField(default=False)
     # Token = models.AutoField(auto_created=True, unique=True, default=1001, serialize=True)
 
@@ -53,10 +45,17 @@ class Student(models.Model):
         return self.ID
 
 class Contestant(models.Model):
-    Token = models.AutoField(auto_created=True, primary_key=True, unique=True, serialize=True)
-    ID = models.ForeignKey(Student, on_delete=models.CASCADE)
-    # Name = models.ForeignKey(Student, on_delete=models.CASCADE)
-    TShirt = models.CharField(max_length=10, choices=Student.tshirt, default='mid')
+
+    ID = models.CharField(max_length=20, unique=True)
+    Name = models.CharField(max_length=50, default='No name')
+    Department = models.CharField(max_length=10, default='CSE')
+    Campus = models.CharField(max_length=10, default='MC')
+    Semester = models.CharField(max_length=10, default='1st')
+    Shift = models.CharField(max_length=10, default='Day')
+    Section = models.CharField(max_length=10, default='A')
+    TShirt = models.CharField(max_length=10, default='M')
+    Token = models.IntegerField(primary_key=True, default=1001)
+    # Contestant_Name = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.Token)

@@ -25,9 +25,9 @@ def gen_student():
     semester = random.choices(sem)[0]
     shift = random.choices(shi)[0]
     section = random.choices(sec)[0]
-    tShirt = random.choices(t)[0]
-    status = random.choices(st)[0]
-    s = Student.objects.get_or_create(ID='193-15-'+str(random.randint(11000, 25000)), Name=name, Department=department, Campus=campus, Semester=semester, Shift=shift, Section=section, TShirt=tShirt, Status=status)[0]
+    # tShirt = random.choices(t)[0]
+    # status = False
+    s = Student.objects.get_or_create(ID='193-15-'+str(random.randint(11000, 25000)), Name=name, Department=department, Campus=campus, Semester=semester, Shift=shift, Section=section)[0]
 
     s.save()
 

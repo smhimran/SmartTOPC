@@ -8,7 +8,8 @@
       </div>
     </div>
 
-    <div class="table-responsive">
+    <div class="container">
+      <div class="table-responsive">
       {% if table %}
         <table class = "table table-dark table-striped table-hover">
           <thead class= "thead-dark">
@@ -19,7 +20,6 @@
             <th scope="col">Semester</th>
             <th scope="col">Shift</th>
             <th scope="col">Section</th>
-            <th scope="col">T-Shirt Size</th>
             <th scope="col">Registration Status</th>
           </thead>
           {% for st in table %}
@@ -31,8 +31,11 @@
               <td>{{ st.Semester }}</td>
               <td>{{ st.Shift }}</td>
               <td>{{ st.Section }}</td>
-              <td>{{ st.TShirt }}</td>
-              <td>{{ st.Status }}</td>
+              {% if st.Status == True %}
+                <td>Registered</td>
+              {% else %}
+                <td>Not Registered</td>
+              {% endif %}
             </tr>
           {% endfor %}
 
@@ -40,6 +43,7 @@
         {% else %}
           <p>Nothing Found :( </p>
         {% endif %}
+    </div>
 
     </div>
  {% endblock %}

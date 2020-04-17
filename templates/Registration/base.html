@@ -23,10 +23,14 @@
           <li><a class="navbar-brand" href="{% url 'home' %}">Home</a></li>
           {% if user.is_authenticated %}
             <li><a class="navbar-brand" href="{% url 'registration:list' %}">Students List</a></li>
-            <li><a class="navbar-brand" href="{% url 'registration:form' %}">Enter Data</a></li>
+            <li><a class="navbar-brand" href="{% url 'registration:contestants' %}">Contestants</a></li>
+            {% if user.is_superuser %}
+              <li><a class="navbar-brand" href="{% url 'registration:form' %}">Add Student</a></li>
+            {% endif %}
             <li><a class="navbar-brand" href="{% url 'logout' %}">Logout</a></li>
+
           {% else %}
-            <li><a class="navbar-brand" href="{% url 'registration:user_login' %}">Login</a></li>
+            <li><a class="navbar-brand" href="{% url 'user_login' %}">Login</a></li>
             <li><a class="navbar-brand" href="{% url 'registration:register' %}">Register</a></li>
           {% endif %}
           <li><a class="navbar-brand" href="{% url 'admin:index' %}">Admin</a></li>

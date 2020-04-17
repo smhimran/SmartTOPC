@@ -63,33 +63,101 @@
               <th scope="col">Student ID</th>
               <th scope="col"> Student Name</th>
               <th scope="col">Department</th>
-                {% if user.is_authenticated == True %}
+              {% if user.is_authenticated == True %}
                 <th scope="col">Campus</th>
                 <th scope="col">Semester</th>
                 <th scope="col">Shift</th>
                 <th scope="col">Section</th>
-                <th scope="col">T-Shirt Size</th>
+                <th scope="col">T-Shirt</th>
+
               {% endif %}
               <th scope="col">Registration Status</th>
+              <th class='thead-light'></th>
             </thead>
           {% for st in result %}
-            <tr>
-              <td>{{ st.ID }}</td>
-              <td>{{ st.Name|title }}</td>
-              <td>{{ st.Department }}</td>
               {% if user.is_authenticated == True %}
-                <td>{{ st.Campus }}</td>
-                <td>{{ st.Semester }}</td>
-                <td>{{ st.Shift }}</td>
-                <td>{{ st.Section }}</td>
-                <td>{{ st.TShirt }}</td>
-              {% endif %}
-              {% if st.Status == True %}
-                <td>Registered</td>
+              <tr>
+                <form class="table" action="{% url 'Registration:reg_std' %}" method="post">
+                  {% csrf_token %}
+                  <td><input type="text" name="id" class="form-control" id="id" required="true"
+                                   value="{{ st.ID }}" readonly></td>
+                  <td><input type="text" name="name" class="form-control" id="name" required="true"
+                                   value="{{ st.Name }}" {% if user.is_superuser == 0 %}readonly{% endif %}></td>
+
+                  <td><select name="department" id="department" class="form-control" required="true"
+                                    {% if user.is_staff == 0 %}disabled{% endif %}>
+                                <option value="{{ st.Department }}">{{ st.Department }}</option>
+                                <option value="CSE">CSE</option>
+                                <option value="SWE">SWE</option>
+                                <option value="CIS">CIS</option>
+                                <option value="Other">Other</option>
+                      </select></td>
+                  <td><select name="campus" id="campus" class="form-control" required="true"
+                                    {% if user.is_staff == 0 %}disabled{% endif %}>
+                                <option value="{{ st.Campus }}">{{ st.Campus }}</option>
+                                <option value="MC">MC</option>
+                                <option value="UC">UC</option>
+                      </select></td>
+                  <td><select name="semseter" id="semseter" class="form-control" required="true"
+                                    {% if user.is_staff == 0 %}disabled{% endif %}>
+                                <option value="{{ st.Semester }}">{{ st.Semester }}</option>
+                                <option value="1st">1st</option>
+                                <option value="2nd">2nd</option>
+                      </select></td>
+                  <td><select name="shift" id="shift" class="form-control" required="true"
+                                    {% if user.is_staff == 0 %}disabled{% endif %}>
+                                <option value="{{ st.Shift }}">{{ st.Shift }}</option>
+                                <option value="Day">Day</option>
+                                <option value="Evening">Evening</option>
+                      </select></td>
+                  <td><select name="section" id="section" class="form-control" required="true"
+                                    {% if user.is_staff == 0 %}disabled{% endif %}>
+                                <option value="{{ st.Section }}">{{ st.Section }}</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                  </select></td>
+                  <td><select name="tshirt" id="tshirt" class="form-control" required="true"
+                                    {% if user.is_staff == 0 %}disabled{% endif %}>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                                <option value="XXXL">XXXL</option>
+                  </select></td>
+                  {% if st.Status == False %}
+                  <td>Not Registered</td>
+                  <td>
+                  <button type="submit" id="submit" class="btn "
+                              style="color: #fff;background-color: #025aa5;border-color: #0358a0;">Register
+                      </button>
+                      </td>
+                  {% else %}
+                  <td>Registered</td>
+                  <td>
+                     <button type="submit" id="submit" class="btn "
+                                style="color: #fff;background-color: #025aa5;border-color: #0358a0;">Update
+                        </button>
+                        </td>
+                  {% endif %}
+                </form>
+                </tr>
               {% else %}
-                <td>Not Registered</td>
+              <tr>
+                <td>{{ st.ID }}</td>
+                <td>{{ st.Name|title }}</td>
+                <td>{{ st.Department }}</td>
+                {% if st.Status == True %}
+                  <td>Registered</td>
+                {% else %}
+                  <td>Not Registered</td>
+                {% endif %}
+              </tr>
               {% endif %}
-            </tr>
+
+
           {% endfor %}
         {% elif request.method == "POST" %}
           <div class="alert alert-danger">
