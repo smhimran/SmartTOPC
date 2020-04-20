@@ -9,6 +9,9 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password')
+        help_texts = {
+            'username': None,
+        }
 
 
 

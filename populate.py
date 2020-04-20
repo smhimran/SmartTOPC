@@ -39,5 +39,5 @@ def gen(n):
 
 if __name__ == '__main__':
     print('Generating...Please wait....')
-    gen(100)
+    gen(120)
     print('Done :)')

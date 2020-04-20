@@ -14,10 +14,55 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+
+    body{
+    	text-align: center;
+    font-family: sans-serif;
+    font-weight: 100;
+    }
+    h1{
+    /* color: #596; */
+    font-weight: 100;
+    font-size: 40px;
+    margin: 40px 0px 20px;
+    }
+    #clockdiv{
+    	font-family: sans-serif;
+    	color: #fff;
+    	display: inline-block;
+    	font-weight: 100;
+    	text-align: center;
+    	font-size: 30px;
+    }
+    #clockdiv > div{
+    	padding: 10px;
+    	border-radius: 3px;
+    	background: #007bff;
+    	display: inline-block;
+    }
+    #clockdiv div > span{
+    	padding: 15px;
+    	border-radius: 3px;
+    	background: #0063cc;
+    	display: inline-block;
+    }
+    smalltext{
+    	padding-top: 5px;
+    	font-size: 16px;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    </style>
+    {% block css %}
+
+    {% endblock %}
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-sm  bg-danger sticky-top navbar-dark">
+    <nav class="navbar navbar-expand-sm  bg-primary sticky-top navbar-dark">
       <div class="container">
         <ul class='nav navbar-nav'>
           <li><a class="navbar-brand" href="{% url 'home' %}">Home</a></li>
