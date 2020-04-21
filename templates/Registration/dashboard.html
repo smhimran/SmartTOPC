@@ -1,0 +1,188 @@
+{% extends "Registration/base.html" %}
+
+ {% block body_block %}
+
+    <div class="container" align=center>
+      <div id = 'students' style='width: 400px; height:400px'> </div>
+      <script type="text/javascript">
+        anychart.onDocumentReady(function() {
+
+        // set the data
+        var data = [
+            {x: "Registered", value: {{registered}} , exploded: true},
+            {x: "Not Registered", value: {{not_registered}} },
+        ];
+
+        // create the chart
+        var chart = anychart.pie();
+
+        // set the chart title
+        chart.title("Students");
+
+        // add the data
+        chart.data(data);
+
+        // display the chart in the container
+        chart.container('students');
+        // set legend position
+        chart.legend().position("right");
+        // set items layout
+        chart.legend().itemsLayout("vertical");
+
+        chart.draw();
+
+      });
+      </script>
+    </div>
+    <div class="container" align=center>
+      <div id="department" style='width: 400px; height:400px'>
+
+      </div>
+      <script type="text/javascript">
+        anychart.onDocumentReady(function() {
+
+        // set the data
+        var data = [
+            {x: "CSE", value: {{cse}} , exploded: true},
+            {x: "SWE", value: {{swe}} },
+            {x: "CIS", value: {{cis}} },
+            {x: "Other", value: {{other}} }
+        ];
+
+        // create the chart
+        var chart = anychart.pie();
+
+        // set the chart title
+        chart.title("Departments");
+
+        // add the data
+        chart.data(data);
+
+        // display the chart in the container
+        chart.container('department');
+        chart.sort("desc");
+        // set legend position
+        chart.legend().position("right");
+        // set items layout
+        chart.legend().itemsLayout("vertical");
+
+        chart.draw();
+
+      });
+      </script>
+    </div>
+
+    <div class="container" align=center>
+      <div id="campus" style='width: 400px; height:400px'>
+
+      </div>
+      <script type="text/javascript">
+        anychart.onDocumentReady(function() {
+
+        // set the data
+        var data = [
+            {x: "Main Campus", value: {{mc}} , exploded: true},
+            {x: "Uttara Campus", value: {{uc}} }
+        ];
+
+        // create the chart
+        var chart = anychart.pie();
+
+        // set the chart title
+        chart.title("Campus");
+
+        // add the data
+        chart.data(data);
+
+        // display the chart in the container
+        chart.container('campus');
+        chart.sort("desc");
+        // set legend position
+        chart.legend().position("right");
+        // set items layout
+        chart.legend().itemsLayout("vertical");
+
+        chart.draw();
+
+      });
+      </script>
+    </div>
+
+    <div class="container" align=center>
+      <div id="semseter" style='width: 400px; height:400px'>
+
+      </div>
+      <script type="text/javascript">
+        anychart.onDocumentReady(function() {
+
+        // set the data
+        var data = [
+            {x: "1st Semester", value: {{first}} , exploded: true},
+            {x: "2nd Semester", value: {{second}} }
+        ];
+
+        // create the chart
+        var chart = anychart.pie();
+
+        // set the chart title
+        chart.title("Semester");
+
+        // add the data
+        chart.data(data);
+
+        // display the chart in the container
+        chart.container('semseter');
+        chart.sort("desc");
+        // set legend position
+        chart.legend().position("right");
+        // set items layout
+        chart.legend().itemsLayout("vertical");
+
+        chart.draw();
+
+      });
+      </script>
+    </div>
+
+    <div class="container" align=center>
+      <div id="tshirt" style='width: 400px; height:400px'>
+
+      </div>
+      <script type="text/javascript">
+        anychart.onDocumentReady(function() {
+
+        // set the data
+        var data = [
+            {x: "M", value: {{m}} },
+            {x: "L", value: {{l}} , exploded: true},
+            {x: "XL", value: {{xl}} },
+            {x: "XXL", value: {{xxl}} },
+            {x: "XXXL", value: {{xxxl}} }
+        ];
+
+        // create the chart
+        var chart = anychart.pie();
+
+        // set the chart title
+        chart.title("T-Shirt Sizes");
+
+        // add the data
+        chart.data(data);
+
+        // display the chart in the container
+        chart.container('tshirt');
+        chart.sort("desc");
+        // set legend position
+        chart.legend().position("right");
+        // set items layout
+        chart.legend().itemsLayout("vertical");
+
+        chart.draw();
+
+      });
+      </script>
+    </div>
+
+
+
+ {% endblock %}

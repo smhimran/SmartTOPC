@@ -24,8 +24,7 @@
             <div class="smalltext">Seconds</div>
           </div>
       </div>
-      <p id="demo"></p>
-      <h3>To go......</h3>
+      <h3 id="demo">To go......</h3>
     </div>
 
   </div>
@@ -205,8 +204,7 @@
 
 <script type="text/javascript">
       var deadline = new Date("may 3, 2020 15:37:25").getTime();
-
-      var x = setInterval(function() {
+      function updateTime() {
 
       var now = new Date().getTime();
       var t = deadline - now;
@@ -233,7 +231,9 @@
           document.getElementById("hour").innerHTML ='0';
           document.getElementById("minute").innerHTML ='0' ;
           document.getElementById("second").innerHTML = '0'; }
-      }, 1000);
+      }
+      updateTime();
+      var x = setInterval(updateTime, 1000);
     </script>
 
   {% endblock %}

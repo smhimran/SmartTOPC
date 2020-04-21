@@ -32,6 +32,41 @@ def home(request):
     dict = {'result':result}
     return render(request, 'Registration/home.html', context=dict)
 
+@login_required
+def dashboard(request):
+    #Students info
+    registered = Student.objects.filter(Status=True).count()
+    not_registered = Student.objects.filter(Status=False).count()
+
+    #Departments
+    cse = Contestant.objects.filter(basic_info__Department='CSE').count()
+    swe = Contestant.objects.filter(basic_info__Department='SWE').count()
+    cis = Contestant.objects.filter(basic_info__Department='CIS').count()
+    other = Contestant.objects.filter(basic_info__Department='Other').count()
+
+    #Campus
+    mc = Contestant.objects.filter(basic_info__Campus='MC').count()
+    uc = Contestant.objects.filter(basic_info__Campus='UC').count()
+
+    #Semester
+    first = Contestant.objects.filter(basic_info__Semester='1st').count()
+    second = Contestant.objects.filter(basic_info__Semester='2nd').count()
+
+    #T-Shirt
+    m = Contestant.objects.filter(TShirt='M').count()
+    l = Contestant.objects.filter(TShirt='L').count()
+    xl = Contestant.objects.filter(TShirt='XL').count()
+    xxl = Contestant.objects.filter(TShirt='XXL').count()
+    xxxl = Contestant.objects.filter(TShirt='XXXL').count()
+
+    dict = { 'registered':registered, 'not_registered':not_registered,
+            'cse':cse, 'swe':swe, 'cis':cis, 'other':other,
+            'mc':mc, 'uc':uc,
+            'first':first, 'second':second,
+            'm':m, 'l':l, 'xl':xl, 'xxl':xxl, 'xxxl':xxxl,
+            }
+    return render(request, 'Registration/dashboard.html', context=dict)
+
 def register(request):
 
     registered = False
@@ -62,6 +97,8 @@ def register(request):
 
 @login_required
 def list(request):
+    if request.user.is_superuser == 0:
+        return HttpResponseRedirect(reverse('home'))
     student_list = Student.objects.order_by('ID')
     dict = {'table': student_list}
     return render(request, 'Registration/list.html', context=dict)
@@ -74,6 +111,8 @@ def contestants(request):
 
 @login_required
 def user_entry(request):
+    if request.user.is_superuser == 0:
+        return HttpResponseRedirect(reverse('home'))
     form = Form()
     if request.method == 'POST':
         form = Form(request.POST)

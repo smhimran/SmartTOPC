@@ -47,13 +47,6 @@ class Student(models.Model):
 class Contestant(models.Model):
 
     basic_info = models.OneToOneField(Student, on_delete=models.CASCADE, null=True)
-    # ID = models.CharField(max_length=20, unique=True)
-    # Name = models.CharField(max_length=50, default='No name')
-    # Department = models.CharField(max_length=10, default='CSE')
-    # Campus = models.CharField(max_length=10, default='MC')
-    # Semester = models.CharField(max_length=10, default='1st')
-    # Shift = models.CharField(max_length=10, default='Day')
-    # Section = models.CharField(max_length=10, default='A')
     TShirt = models.CharField(max_length=10, default='M')
     Token = models.IntegerField(primary_key=True, default=1001)
     # Contestant_Name = models.ForeignKey(Student, on_delete=models.CASCADE)
