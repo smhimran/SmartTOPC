@@ -5,8 +5,12 @@ from Registration.models import *
 class studentAdmin(admin.ModelAdmin):
     list_display = ('ID', 'Name', 'Department', 'Campus', 'Semester', 'Shift', 'Section', 'Status')
 
+# def basic_info(self, object):
+#     return object.contestant.student
+
 class contestantAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'Name', 'Department', 'Campus', 'Semester', 'Shift', 'Section', 'TShirt', 'Token')
+    model = Contestant
+    list_display = ('Token', 'id', 'name', 'dept', 'TShirt')
 
 
 admin.site.register(Student, studentAdmin)

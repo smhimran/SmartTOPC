@@ -27,13 +27,13 @@
          {% for st in table %}
            <tr>
              <td>{{ st.Token }}</td>
-             <td>{{ st.ID }}</td>
-             <td>{{ st.Name|title }}</td>
-             <td>{{ st.Department }}</td>
-             <td>{{ st.Campus }}</td>
-             <td>{{ st.Semester }}</td>
-             <td>{{ st.Shift }}</td>
-             <td>{{ st.Section }}</td>
+             <td>{{ st.basic_info.ID }}</td>
+             <td>{{ st.basic_info.Name|title }}</td>
+             <td>{{ st.basic_info.Department }}</td>
+             <td>{{ st.basic_info.Campus }}</td>
+             <td>{{ st.basic_info.Semester }}</td>
+             <td>{{ st.basic_info.Shift }}</td>
+             <td>{{ st.basic_info.Section }}</td>
              <td>{{ st.TShirt }}</td>
            </tr>
          {% endfor %}

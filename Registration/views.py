@@ -108,6 +108,7 @@ def user_login(request):
         # print('Invalid user tried to login')
         return render(request, 'Registration/login.html')
 
+@login_required
 def reg_std(request):
     if request.method == 'POST':
         id = request.POST.get('id')
@@ -119,18 +120,15 @@ def reg_std(request):
         section = request.POST.get('section')
         tShirt = request.POST.get('tshirt')
 
-        print('ID = {} Name = {}'.format(str(id), str(name)))
+
 
         student = Student.objects.get(ID=id)
 
+        print('ID = {} Name = {}'.format(str(student.ID), str(student.Name)))
+
         if student.Status == True:
             contestant = Contestant.objects.get(ID=id)
-            contestant.Name = name
-            contestant.Department = department
-            contestant.Campus = campus
-            contestant.Semester = semester
-            contestant.Shift = shift
-            contestant.Section = section
+
             contestant.TShirt = tShirt
 
             student.Name = name
@@ -141,6 +139,7 @@ def reg_std(request):
             student.Section = section
 
             student.save()
+            contestant.basic_info = student
 
             contestant.save()
             return HttpResponseRedirect(reverse('home'))
@@ -153,18 +152,8 @@ def reg_std(request):
             else:
                 token = mx.Token
             token += 1
-            contestant = Contestant.objects.create(
-                ID = id,
-                Name = name,
-                Department = department,
-                Campus = campus,
-                Semester = semester,
-                Shift = shift,
-                Section = section,
-                TShirt = tShirt,
-                Token = token,
-            )
-            contestant.save()
+
+
             student.Status = True
             student.Name = name
             student.Department = department
@@ -174,6 +163,16 @@ def reg_std(request):
             student.Section = section
 
             student.save()
+
+            contestant = Contestant.objects.create(
+                basic_info = student,
+                TShirt = tShirt,
+                Token = token,
+            )
+
+
+            contestant.save()
+
             return HttpResponseRedirect(reverse('home'))
     else:
         return HttpResponseRedirect(reverse('home'))
